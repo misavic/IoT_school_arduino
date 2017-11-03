@@ -1,8 +1,6 @@
 #include "WiFiEsp.h"
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
-#include <SPI.h>
-#include <EEPROM.h>
 
 #define RED 21
 #define GREEN 20
