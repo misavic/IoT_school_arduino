@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+
+def AAVersion = '4.0.0'
+def springTemplateVersion = "2.0.0.M3";
+def jacksonDatabindVersion = "2.7.5";
+
+
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+    flavorDimensions "default"
+    defaultConfig {
+        applicationId "com.execom.iot.wolksense"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
+    }
+
+    productFlavors {
+        production {
+            buildConfigField "String", "HOST", "\"https://api-demo.wolkabout.com/api\""
+        }
+        staging {
+            buildConfigField "String", "HOST", "\"https://api-demo.wolkabout.com/api\""
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/services/org.androidannotations.plugin.AndroidAnnotationsPlugin'
+        exclude 'asm-license.txt'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    // Android annotations
+    annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+    annotationProcessor "org.androidannotations:rest-spring:$AAVersion"
+    compile "org.androidannotations:rest-spring-api:$AAVersion"
+
+
+    compile 'com.google.dagger:dagger:2.0'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.0'
+
+
+
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.jjoe64:graphview:4.2.1'
+    compile 'com.android.support:design:25.2.0'
+    compile 'com.android.support:support-annotations:25.2.0'
+    compile 'org.springframework.android:spring-android-rest-template:2.0.0.M3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.5'
+    compile 'io.github.controlwear:virtualjoystick:1.6.0'
+    testCompile 'junit:junit:4.12'
+
+    compile 'com.google.code.gson:gson:2.8.2'
+}
