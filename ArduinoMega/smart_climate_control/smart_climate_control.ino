@@ -29,22 +29,6 @@ All text above, and the splash screen must be included in any redistribution
 #define OLED_CS    53
 #define OLED_RESET 49
 
-
-// Update these with values suitable for your network and device.
-const char* ssid = "guest";
-const char* password = "g3tm3int0";
-const char* mqtt_server = "52.209.74.134";
-const int port = 1883;
-
-const char* username_mqtt = "44444";
-const char* password_mqtt = "88aa0853-9072-438f-89d1-cc23231edd06";
-const char* topic = "sensors/44444";
-const char* temperatureReference = "T";
-const char* pressureReference = "P";
-const char* humidityReference = "H";
-
-const char* dummy_message= "RTC 1485161653;READINGS R:1485161653,T:300,P:1018,H:31;";
-
 String message = "";
 char* msgBuf;
 
@@ -94,6 +78,8 @@ static const unsigned char PROGMEM logo16_glcd_bmp[] =
 
 void setup()   {                
   Serial.begin(9600);
+  Serial3.begin(9600);
+  Serial3.setTimeout(1000);
  
   if (!bme.begin()) {
     Serial.println("Could not find a valid BME280 sensor, check wiring!");
@@ -105,6 +91,7 @@ void setup()   {
   display.begin(SSD1306_SWITCHCAPVCC);
   writeText(">>IoT School<<");
   delay(2000);
+  Serial3.println("Start");
 
 }
 
@@ -116,23 +103,26 @@ void loop() {
   String pressure  = String(bme.getPressure_MB());
   String temperature = String(bme.getTemperature_C());
   String humidity = String(bme.getHumidity());
-  Serial.print("Press: ");
-  Serial.println (pressure);
-  Serial.print("Temp: ");
-  Serial.println (humidity);
-  Serial.print("Hum: ");
-  Serial.println (temperature);
-  Serial.println ();
-   
+  
   writeText(temperature);
+  String message = "Temp:" + temperature;
+  Serial3.println (message);
   delay(3000);
   writeText(pressure);
+  String message2 = "Press:" + pressure;
+  Serial3.println (message2);
   delay (3000);
   writeText(humidity);
+  String message3 = "Hum:" + humidity;
+  Serial3.println (message3);
   delay(3000);
-  writeText(">>From cloud:<<");
-  delay(1000);
-  writeText("VAL CLOUD");
+  String txt = Serial3.readString();
+  Serial.println(txt);
+  String message4 = ">>From cloud:" + txt + "<<";
+  writeText(message4);
+//  delay(1000);
+//  String txt = Serial3.readString();
+//  writeText(txt);
 
   delay(3000);
   
