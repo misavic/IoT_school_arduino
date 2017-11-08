@@ -2,16 +2,12 @@
 #include <ESP8266WiFi.h>
 #include "WolkConn.h"
 
-//const char* ssid = "wifi_ssid";
-//const char* password = "wifi_password";
-const char* ssid = "guest";
-const char* password = "g3tm3int0";
+const char* ssid = "wifi_ssid";
+const char* password = "wifi_password";
 const char* mqtt_server = "52.213.16.227";
 
-//const char *device_key = "device_key";
-//const char *password_key = "password_key";
-const char *device_key = "MILAN6";
-const char *password_key = "6321d5e6-dbaf-406a-90d8-c3c4738bea02";
+const char *device_key = "device_key";
+const char *password_key = "password_key";
 int portno = 1883;
 const char *relay1 = "RL1";
 const char *relay2 = "RL2";
