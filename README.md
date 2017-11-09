@@ -5,4 +5,4 @@ Equipment:
  - Click Shield
  - OLED W click (Slot 1)
  - Weather click (Slot 2)
- - NodeMcu (TX -> PJ0 , RX -> PJ1)
+ - NodeMcu (Connected TX - > D13, RX - > D12)
