@@ -1,9 +1,13 @@
+#include <SoftwareSerial.h>
+
 #define TRIG 7
 #define ECHO 6
 
 #define BLUE 3
 #define RED 10
 #define GREEN 11
+
+SoftwareSerial mySerial(13, 12); // RX, TX
 void setup() {
   Serial.begin(9600);
   // put your setup code here, to run once:
@@ -12,7 +16,7 @@ void setup() {
   pinMode(RED, OUTPUT);
   pinMode(GREEN, OUTPUT);
  
-  
+  mySerial.begin(9600);
 }
 
 void loop() {
@@ -28,6 +32,7 @@ void loop() {
   duration = pulseIn(ECHO, HIGH);
   distance = (duration/2) / 29.1;
   Serial.println(distance);
+  mySerial.println(String(distance));
   if (distance < 50) {  
     
     //digitalWrite(RED,HIGH);
@@ -45,7 +50,7 @@ void loop() {
     digitalWrite(RED,LOW);
     digitalWrite(GREEN,HIGH);
   }
-  delay(10);
+  delay(2000);
 
   
 }
