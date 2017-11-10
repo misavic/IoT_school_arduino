@@ -81,6 +81,7 @@ public class SignInActivity extends AppCompatActivity {
         try {
             String response = restService.signIn(new SignInDto(email, pass)).toString();
             Log.d(LOG_TAG, response);
+
             /*JSONObject json = new JSONObject(response);
 
             JSONArray accessList = json.getJSONArray("accessList");

@@ -13,6 +13,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/ti_layout_point_name"
+            android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -42,7 +43,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/ti_layout_data"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
             <EditText
                 android:id="@+id/et_actuator_data"
                 android:layout_width="match_parent"
@@ -51,6 +53,19 @@
                 android:hint="Data"
                 android:singleLine="false" />
         </android.support.design.widget.TextInputLayout>
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/seekData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:dsb_progressColor="@color/colorAccent"
+            app:dsb_indicatorColor="@color/colorAccent"
+            app:dsb_trackColor="@color/dsb_disabled_color"
+            app:dsb_rippleColor="@color/colorAccent"
+            app:dsb_min="-50"
+            app:dsb_max="50"
+            app:dsb_value="0"/>
 
         <Button
             android:id="@+id/btn_actuate"

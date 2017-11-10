@@ -11,6 +11,7 @@ import org.androidannotations.rest.spring.annotations.RequiresHeader;
 import org.androidannotations.rest.spring.annotations.Rest;
 import org.androidannotations.rest.spring.api.RestClientErrorHandling;
 import org.androidannotations.rest.spring.api.RestClientHeaders;
+import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
@@ -26,7 +27,7 @@ public interface Service extends RestClientHeaders, RestClientErrorHandling {
 
     @Post("/points/{pointId}/actuators/{actuatorId}/actuations")
     @RequiresHeader(HttpHeaders.AUTHORIZATION)
-    Object actuate(@Path String pointId, @Path String actuatorId, @Body String command);
+    void actuate(@Path String pointId, @Path String actuatorId, @Body int command);
 
     @Get("/points")
     @RequiresHeader(HttpHeaders.AUTHORIZATION)
